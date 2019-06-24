@@ -1,11 +1,6 @@
-/**
- * Sample Skeleton for 'PowerOutages.fxml' Controller Class
- */
-
 package it.polito.tdp.poweroutages;
 
 import java.net.URL;
-import java.util.Map.Entry;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.poweroutages.model.Model;
@@ -21,6 +16,12 @@ import javafx.scene.control.TextField;
 public class PowerOutagesController {
 
 	private Model model;
+	
+	public void setModel(Model model) {
+		this.model = model;
+		this.cmbBoxNerc.getItems().addAll(this.model.getNercs());
+	}
+
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -51,7 +52,6 @@ public class PowerOutagesController {
     	this.model.creaGrafo();
     	txtResult.clear();
     	txtResult.appendText("Grafo creato!");
-
     }
 
     @FXML
@@ -77,13 +77,14 @@ public class PowerOutagesController {
     @FXML
     void doVisualizzaVicini(ActionEvent event) {
     	this.txtResult.clear();
-    	if(this.cmbBoxNerc.getValue() == null){
+    	
+    	if(this.cmbBoxNerc.getValue() == null)
     		this.txtResult.setText("SELEZIONARE UN NERC");
-    	} else {
-    		for(NeighborNerc n : this.model.getCorrelatedNeighbors(this.cmbBoxNerc.getValue())){
+    	else {
+    		for(NeighborNerc n : this.model.getCorrelatedNeighbors(this.cmbBoxNerc.getValue()))
         		txtResult.appendText(n.toString() + "\n");
-        	}
     	}
+    	
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -97,9 +98,4 @@ public class PowerOutagesController {
 
     }
     
-    public void setModel(Model model) {
-		this.model = model;
-		this.cmbBoxNerc.getItems().addAll(this.model.getNercs());
-
-	}
 }

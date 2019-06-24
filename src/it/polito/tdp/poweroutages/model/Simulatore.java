@@ -62,7 +62,7 @@ public class Simulatore {
 					Nerc nerc = e.getNerc();
 					System.out.println("INIZIO INTERRUZIONE NERC: " + nerc);
 
-					//cerco se c'Ã¨ un donatore, altrimenti ... CATASTROFE
+					//cerco se c'è un donatore, altrimenti ... CATASTROFE
 					Nerc donatore = null;
 					//cerco tra i miei "debitori"
 					if(this.prestiti.get(nerc).size() > 0) {
@@ -115,7 +115,7 @@ public class Simulatore {
 					if(e.getDonatore() != null)
 						this.bonus.put(e.getDonatore(), bonus.get(e.getDonatore()) + 
 								Duration.between(e.getDataInizio(), e.getDataFine()).toDays());
-					//dire che il donatore non sta piÃ¹ prestando
+					//dire che il donatore non sta più prestando
 					e.getDonatore().setStaPrestando(false);
 					
 					break;
